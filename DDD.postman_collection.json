@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "0eff7092-b8a0-4336-a81a-28d826875a58",
+		"name": "DDD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4905573"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/bankAccount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"MF\",\r\n    \"number\":2,\r\n    \"city\":\"SCZ\",\r\n    \"type\":\"Ahorro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/bankAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bankAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test_JSON",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var items = JSON.parse(pm.environment.get(\"items\"));\r",
+							"var iActual = parseInt(pm.environment.get(\"indiceActual\"));\r",
+							"if(iActual >= items.length){\r",
+							"    iActual = 0;\r",
+							"}\r",
+							"var item = items[iActual];\r",
+							"pm.environment.set(\"name\", item.name);\r",
+							"pm.environment.set(\"number\", item.number);\r",
+							"pm.environment.set(\"city\", item.city);\r",
+							"pm.environment.set(\"type\", item.type);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*var iActual = parseInt(pm.environment.get(\"indiceActual\"));\r",
+							"var items = JSON.parse(pm.environment.get(\"items\"));\r",
+							"var item = items[iActual];\r",
+							"pm.test(\"Status code is \" + item.respuesta, function () {\r",
+							"    pm.response.to.have.status(item.respuesta);\r",
+							"});\r",
+							"if (item.respuesta == 200) {\r",
+							"    pm.test(\"Response body is not empty\", function () {\r",
+							"        const responseBody = pm.response.text();\r",
+							"\r",
+							"        pm.expect(responseBody).to.not.be.empty;\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"La respuesta devuelve un GUID\", function () {\r",
+							"        const responseBody = pm.response.text();\r",
+							"        console.log\r",
+							"        //const guidRegex = /^\\\"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\\\"$/;\r",
+							"        //pm.expect(responseBody).to.match(guidRegex);\r",
+							"    });\r",
+							"}\r",
+							"iActual = iActual + 1;\r",
+							"if (iActual >= items.length) {\r",
+							"    iActual = 0;\r",
+							"}\r",
+							"pm.environment.set(\"indiceActual\", iActual);*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"number\": \"{{number}}\",\r\n    \"city\": \"{{city}}\",\r\n    \"type\": \"{{type}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_PRINCIPAL}}/bankAccount",
+					"host": [
+						"{{URL_PRINCIPAL}}"
+					],
+					"path": [
+						"bankAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/bankAccount2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/bankAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bankAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/bankAccount3",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\":1,\r\n    \"city\":\"SCZ\",\r\n    \"value\":100,\r\n    \"type\":\"Ahorro\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/bankAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bankAccount"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
